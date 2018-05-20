@@ -1,118 +1,131 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+# shins
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+### Shins Is Not Slate
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+Beautiful static documentation for your API.
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
+![logo](https://github.com/Mermade/shins/blob/master/docs/logo.jpg?raw=true)
 
-Features
-------------
+Shins is a port of [Slate](https://github.com/lord/slate) to Javascript / Nodejs, and would
+not be possible without all of that hard work.
 
-* **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
+Version numbers of Shins aim to track the version of Slate they are compatible with.
 
-* **Everything on a single page** — Gone are the days when your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
+![screenshot](https://github.com/Mermade/shins/blob/master/docs/screenshot.jpg?raw=true)
 
-* **Slate is just Markdown** — When you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks.
+### Usage
 
-* **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with GitHub Flavored Markdown.
+* Fork the repository
+* Clone the fork
+* Edit source/index.html.md
+* `npm install`
+* `node shins.js` or
+    * `node shins.js --minify` or
+	* `node shins.js --customcss` or
+	* `node shins.js --inline` or
+    * `node shins.js --unsafe`
+* To add custom logo add `--logo` option with path to your logo image.
+* To specify a different output filename from the default `./index.html`, use the `--output` or `-o` option.
+* To allow css-style attributes in markdown, specify the `--attr` option.
+* To check locally: `node arapaho` and browse to [localhost:4567](http://localhost:4567) - changes to your source `.html.md` files and the `source/includes` directory will automatically be picked up and re-rendered. If you use `--launch` or `-l` your default browser will be opened automatically
+* Add, commit and push
+* Then (in your fork) press this button
 
-* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-* **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
+Or, to deploy to GitHub Pages:
 
-* **Let your users update your documentation for you** — By default, your Slate-generated documentation is hosted in a public GitHub repository. Not only does this mean you get free hosting for your docs with GitHub Pages, but it also makes it simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to use GitHub, you're also welcome to host your docs elsewhere.
+* Change the setting on your fork so Github Pages are served from the root directory
+* Browse to `https://{yourname}.github.io/{repository-name}`
 
-* **RTL Support** Full right-to-left layout for RTL languages such as Arabic, Persian (Farsi), Hebrew etc.
+To deploy to your own web-server:
 
-Getting started with Slate is super easy! Simply fork this repository and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://lord.github.io/slate).
+If you use the option `--minify` to shins, the only things you need to take to your web host is the generated `index.html` and the contents of the `pub` directory, which should be kept relative to it, so the structure is always:
 
-Getting Started with Slate
-------------------------------
-
-### Prerequisites
-
-You're going to need:
-
- - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.3.1 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
-
-### Getting Set Up
-
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
-
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
-
-# OR run this to run with vagrant
-vagrant up
+```
+{whatever}/index.html
+{whatever}/pub/css/
+{whatever}/pub/js/
 ```
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
+If you use the `--inline` option to shins, then everything is bundled into the `index.html` file and no `pub` directory is required. Fonts are by default loaded from this github repository, but this can be overridden with the `--fonturl` option.
 
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+### API
 
-If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
+```javascript
+var shins = require('shins');
+var options = {};
+options.minify = false;
+options.customCss = false;
+options.inline = false;
+options.unsafe = false; // setting to true turns off markdown sanitisation
+//options.source = filename; // used to resolve relative paths for included files
+shins.render(markdownString, options, function(err, html) {
+  // ...
+});
+```
 
-### Note on JavaScript Runtime
+or, with Promises:
 
-For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
+```javascript
+var shins = require('shins');
+var options = {};
+options.minify = false;
+options.customCss = false;
+options.inline = false;
+options.unsafe = false; // setting to true turns off markdown sanitisation
+//options.source = filename; // used to resolve relative paths for included files
+options.logo = './my-custom-logo.png'
+shins.render(markdownString, options)
+.then(html => {
+  // ...
+});
+```
 
-Companies Using Slate
----------------------------------
+The `err` parameter is the result of the `ejs` rendering step.
 
-* [NASA](https://api.nasa.gov)
-* [IBM](https://docs.cloudant.com/api.html)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Appium](http://appium.io/slate/en/master)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [Fidor Bank](http://docs.fidor.de/)
-* [Scale](https://docs.scaleapi.com/)
+Setting `customCss` to `true` will include the `pub/css/screen_overrides.css`,`pub/css/print_overrides.css` and `pub/css/theme_override.css` files, in which you can override any of the default Slate theme, to save you from having to alter the main css files directly. This should make syncing up with future Shins / Slate releases easier.
 
-You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
+Setting `inline` to `true` will inline all page resources (except resources referenced via CSS, such as fonts) to output html. This way HTML can be used stand-alone, without needing any other resources. It will also set `minify` to `true`.
 
-Questions? Need Help? Found a bug?
---------------------
+Set `logo` path to add your custom logo as absolute path or path relative to process working directory. If `inline` option is on image will be inlined, else it will be copied to `source/images` directory and included via `src` image attribute.
 
-If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Spectrum community](https://spectrum.chat/slate)!
+### CLI usage via api2html (third-party)
 
-Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/lord/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
+You can also use the [api2html](https://github.com/tobilg/api2html) CLI wrapper around Shins/Widdershins: 
 
-Contributors
---------------------
+```bash
+$ # Install globally
+$ npm install api2html -g
+$ # Display the api2html help 
+$ api2html --help
+$ # Simple usage
+$ api2html -o api.html api.yml
+```
 
-Slate was built by [Robert Lord](https://lord.io) while interning at [TripIt](https://www.tripit.com/).
+### Updating from Slate
 
-Thanks to the following people who have submitted major pull requests:
+* Note: changes to Slate CSS, Javascript etc may break assumptions made in Shins. Use at your own risk.
+* The script `updateFromSlate` assumes you have Ruby Slate checked-out by the side of shins (i.e. in a sibling directory) and will copy .scss files, fonts, Javascript files etc.
+* The `buildstyle.js` program can be used to process the .scss files to their .css equivalents. It takes one optional parameter, the `outputStyle` used by `node-sass`. This can be either `nested`, `expanded`, `compact` or `compressed`. Default is `nested`.
 
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-- [@cvkef](https://github.com/cvkef)
+### Notes
 
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
+* Windows is definitely supported
+* Syntax highlighting in 176 [languages](https://highlightjs.org/static/demo/) and 79 [themes](https://highlightjs.org/static/demo/) (you can specify the highlighter theme to use by setting `highlighter_theme` in your slate markdown header)
+* Multiple language tabs per language are supported
+* Static TOC as per Slate v2.0
+* [GitHub emoji shortcuts](https://gist.github.com/rxaviers/7360908) are supported
+* For converting [OpenApi / Swagger](https://github.com/OAI/OpenAPI-Specification) or [AsyncAPI](https://github.com/asyncapi/asyncapi) definitions to Shins or Slate, see [widdershins](http://github.com/mermade/widdershins)
+* `arapaho` has a `--preserve` or `-p` option which will not overwrite your `.html` output file, but still re-render when necessary
+* Shins ships with an alternate theme by TradeGecko which is also under the Apache 2.0 license
+* Shins additionally supports [AsciiDoc](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#include-files) `include::filename[]` syntax as well as `!INCLUDE filename` from [markdown-pp](https://github.com/MikeRalphson/markdown-pp-js) - this is not supported by Slate
+* If you are using Node.js 4, please specify the `--harmony` flag
 
-Special Thanks
---------------------
-- [Middleman](https://github.com/middleman/middleman)
-- [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
-- [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+### Shins in the wild
+
+Please feel free to add a link to your API documentation here
+
+* [APIs.guru OpenAPI specification extensions (Semoasa) documentation](https://mermade.github.io/shins/apisguru.html)
+* [Signal Biometrics Ox documentation](https://signalbiometrics.github.io/ox-docs/)
+* [LeApp daemon API](https://leapp-to.github.io/shins/index.html)
