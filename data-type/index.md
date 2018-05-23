@@ -1,7 +1,7 @@
 # Data Types
 
+## Primitive types
 ```javascript
-// primative types
 const aNumber = 1.0;
 const aString = 'string-literal';
 const aBoolean = true;
@@ -9,7 +9,11 @@ const aSymbol = Symbol(); //ES6
 //Special value
 const anUndefined = undefined;
 const aNull = null;
+```
+<!-- js-console -->
 
+## Reference types
+```javascript
 // reference types
 const aDate = new Date();
 const anEmptyArray = []; // array literal
@@ -22,7 +26,4 @@ const aSet = new Set();
 const aWeakMap = new WeakMap();
 const aWeakSet = new WeakSet();
 ```
-
-<aside class="notice">
-a function is also a object. You can manipulate it as an object.
-</aside>
+<!-- js-console -->
