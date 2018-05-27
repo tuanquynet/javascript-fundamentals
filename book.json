@@ -1,10 +1,9 @@
 {
-  "plugins": ["prism", "-highlight", "js-console"],
-  "pluginsConfig": {
-      "prism": {
-        "css": [
-          "prismjs/themes/prism-okaidia.css"
-        ]
-      }
+    "plugins": ["prism", "-highlight", "js-console", "addcssjs"],
+    "pluginsConfig": {
+        "prism": {
+            "css": ["prismjs/themes/prism-okaidia.css"]
+        },
+        "addcssjs": { "js": ["scripts/assert.js"] }
     }
 }
