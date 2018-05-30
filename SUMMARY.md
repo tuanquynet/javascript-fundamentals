@@ -9,3 +9,4 @@
 * [Instantiation](instantiation/index.md)
 * [Closures](closure/index.md)
 * [Function Prototype](prototype/index.md)
+* [Inheritance](inheritance/index.md)

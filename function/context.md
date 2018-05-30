@@ -55,8 +55,23 @@ console.log(honda.activated === false, "honda.activated is false now.");
 ```
 <!-- js-console -->
 
+```javascript
+//bind as object as context to a function
+function changeName(name) {
+    this.name = name;
+}
+const bob = {};
 
-## Sometime we apply built-in Object in other ways.
+changeNameForBob = changeName.bind(bob);
+changeNameForBob('john');
+/*/
+changeName.bind(bob)('john');
+/*/
+console.log(bob.name === 'john', "now name of bob is john.");
+```
+<!-- js-console -->
+
+## Advanced use of `apply` on method built-in Object.
 ```javascript
 const numbers = [1,2,3];
 const max = Math.max.apply(Math, numbers);

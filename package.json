@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gitbook build",
     "preview": "gitbook serve --open",
-    "pdf": "gitbook pdf ./ ./exports/js-fundamental.pdf"
+    "pdf": "gitbook pdf ./ ./exports/js-fundamental.pdf",
+    "deploy": "sh deploy.sh"
   },
   "repository": {
     "type": "git",

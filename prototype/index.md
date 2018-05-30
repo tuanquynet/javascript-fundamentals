@@ -18,7 +18,7 @@ console.log(!!bob.getFullname(), 'Instance method exists and is callable');
 ```
 <!-- js-console -->
 
-## Attach a method directly to the instance to override its prototype
+## Attach a method directly to `this` object to override its prototype
 ```javascript
 function User(firstName, lastName) {
     this.firstName = firstName;
