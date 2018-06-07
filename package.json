@@ -21,8 +21,6 @@
   ],
   "author": "Quy Tran",
   "license": "MIT",
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
