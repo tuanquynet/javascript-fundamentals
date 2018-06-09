@@ -50,10 +50,10 @@ var counter = (function() {
     }
   };   
 })();
-console.log(counter.value() === 0, 'value of counter is initialize with 0');
+assert(counter.value() === 0, 'value of counter is initialize with 0');
 
 counter.increment();
-console.log(counter.value() === 1, 'counter change value to 1');
+assert(counter.value() === 1, 'counter change value to 1');
 ```
 <!-- js-console -->
 
@@ -64,7 +64,7 @@ var count = 0;
 // Here is one of common pitfalls
 for ( var i = 0; i < 4; i++ ) {
   setTimeout(function(){
-    console.log(i == count++, "Check the value of i." );
+    assert(i == count++, "Check the value of i." );
   }, i * 200);
 };
 ```
@@ -75,7 +75,7 @@ var count = 0;
 //Using closure to fix the problem
 for ( var i = 0; i < 4; i++ ) (function(i){
   setTimeout(function(){
-    console.log(i == count++, "Check the value of i." );
+    assert(i == count++, "Check the value of i." );
   }, i * 200);
 })(i);
 ```

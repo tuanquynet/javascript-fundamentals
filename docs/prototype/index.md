@@ -14,7 +14,7 @@ User.prototype.getFullname = function (name) {
 
 const bob = new User('Bob', 'Job');
 
-console.log(!!bob.getFullname(), 'Instance method exists and is callable');
+assert(!!bob.getFullname(), 'Instance method exists and is callable');
 ```
 <!-- js-console -->
 
@@ -35,6 +35,6 @@ User.prototype.getFullname = function (name) {
 
 const bob = new User('Bob', 'Job');
 
-console.log(bob.getFullname() === 'Bob, Job', 'Instance method exists and is callable');
+assert(bob.getFullname() === 'Bob, Job', 'Instance method exists and is callable');
 ```
 <!-- js-console -->

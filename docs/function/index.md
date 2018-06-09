@@ -17,9 +17,12 @@ const loadData = () => {};
 ## Declared Function will be hoisted but express function and arrow are not
 
 ```javascript
-console.log(getUser instanceof Function, 'getUser is a function');
-console.log(addUser instanceof Function, 'addUser is a function');
-console.log(removeUser instanceof Function, 'removeUser is a function');
+assert(getUser instanceof Function, 'getUser is a function');
+assert(addUser instanceof Function, 'addUser is a function');
+assert(removeUser instanceof Function, 'removeUser is a function');
+
+assert(addUser === undefined, 'addUser is undefined');
+assert(removeUser === undefined, 'removeUser is undefined');
 
 //function declaration
 function getUser() {
@@ -39,7 +42,7 @@ const func = function () {};
 obj.count = 0;
 func.count = 0;
 
-console.log(obj.count === func.count, 'Both are objects, both has property.');
+assert(obj.count === func.count, 'obj and func both are objects, both has property.');
 ```
 <!-- js-console -->
 
@@ -49,7 +52,7 @@ const obj = {};
 const count = function () {};
 obj.count = count;
 
-console.log(obj.count instanceof Function, 'obj.count is a method');
+assert(obj.count instanceof Function, 'obj.count is a function');
 ```
 <!-- js-console -->
 

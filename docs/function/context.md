@@ -9,7 +9,7 @@ var aUser = {
   } 
 }; 
 aUser.remove(); 
-console.log(!aUser.disabled, "disabled of aUser has been changed." );
+assert(!aUser.disabled, "disabled of aUser has been changed." );
 ```
 <!-- js-console -->
 
@@ -19,15 +19,17 @@ function User(){
   this.disabled = true; 
 } 
 User();
-console.log( disabled === true, "A global object now exists with that name and value." ); 
+assert( window.disabled === true, "A global variable `disabled` was created accidentally" ); 
  
 const toyota = { 
   change: function(){ 
     this.available = true; 
   } 
-}; 
+};
+
+//invoke the method change of toyota
 toyota.change(); 
-console.log(toyota.available === true, "When it's an object property, the value is set within the object.");
+assert(toyota.available === true, "When it's an object property, the value is set within the object.");
 ```
 <!-- js-console -->
 
@@ -46,17 +48,19 @@ const honda = {
     activated: false,
 };
 
+//call method activate of toyota but change context to honda using `call`
 toyota.activate.call(honda);
-console.log(toyota.activated === true, "toyota.activated has been changed.");
-console.log(honda.activated === true, "honda.activated has been changed.");
+assert(toyota.activated === true, "toyota.activated has been changed.");
+assert(honda.activated === true, "honda.activated has been changed.");
 
+//call method activate of toyota but change context to honda using `apply`
 toyota.deactivate.apply(honda);
-console.log(honda.activated === false, "honda.activated is false now.");
+assert(honda.activated === false, "honda.activated is false now.");
 ```
 <!-- js-console -->
 
 ```javascript
-//bind as object as context to a function
+//bind object as context to a function
 function changeName(name) {
     this.name = name;
 }
@@ -67,17 +71,17 @@ changeNameForBob('john');
 /*/
 changeName.bind(bob)('john');
 /*/
-console.log(bob.name === 'john', "now name of bob is john.");
+assert(bob.name === 'john', "now name of bob is john.");
 ```
 <!-- js-console -->
 
-## Advanced use of `apply` on method built-in Object.
+## Advanced use of `apply` on methods of built-in Object.
 ```javascript
 const numbers = [1,2,3];
 const max = Math.max.apply(Math, numbers);
 
-console.log(max === 3, "Apply Math.max successfully");
-console.log(isNaN(Math.max(numbers)), "We can not pass array to Math.max()");
+assert(max === 3, "Apply Math.max successfully");
+assert(isNaN(Math.max(numbers)), "We can not pass array to Math.max()");
 ```
 <!-- js-console -->
 

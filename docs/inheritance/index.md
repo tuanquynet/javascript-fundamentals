@@ -11,13 +11,13 @@ Person.prototype.talk = function(){};// method will typically not be overrided a
 Person.prototype.name = 'default'; // but property will be assigned new value.
 
 const john = new Person();
-console.log( john.name === 'default', "john has property 'name' because it inherit from its class." );
-console.log( john.hasOwnProperty('name'), "but it is its own property." );
-console.log( john.hasOwnProperty('talk'), "and john object owns talk method." );
+assert( john.name === 'default', "john has property 'name' because it inherit from its class." );
+assert( john.hasOwnProperty('name'), "but it is its own property." );
+assert( john.hasOwnProperty('talk'), "and john object owns talk method." );
 
 //a property will be created and attached to object
 john.name = 'john';
-console.log( john.hasOwnProperty('name'), "when assigning value to a property, it will be created and attached to object");
+assert( john.hasOwnProperty('name'), "when assigning value to a property, it will be created and attached to object");
 ```
 <!-- js-console -->
 
@@ -33,14 +33,14 @@ Student.prototype = Person.prototype;
 Student.prototype = { talk: Person.prototype.talk };
 
 const john = new Student();
-console.log( john instanceof Person, "john receives functionality from the Person prototype" );
+assert( john instanceof Person, "john receives functionality from the Person prototype" );
 
 // Only this maintains the prototype chain
 Student.prototype = new Person();
 
 const bob = new Student();
 
-console.log( bob instanceof Student, "bob receives functionality from the Student prototype" );
-console.log( bob instanceof Person, "bob receives functionality from the Person prototype" );
+assert( bob instanceof Student, "bob receives functionality from the Student prototype" );
+assert( bob instanceof Person, "bob receives functionality from the Person prototype" );
 ```
 <!-- js-console -->

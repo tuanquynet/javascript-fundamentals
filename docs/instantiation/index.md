@@ -21,8 +21,8 @@ function User(name) {
 }
 const bob = new User('bob');
 
-console.log(bob instanceof User, "bob is instantiated correctly");
-console.log(bob.name === 'bob', "name of bob is bob");
+assert(bob instanceof User, "bob is instantiated correctly");
+assert(bob.name === 'bob', "name of bob is bob");
 ```
 <!-- js-console -->
 
@@ -36,14 +36,14 @@ function User(name) {
     }
 }
 const bob = new User('bob');
-console.log(bob.name === 'bob', "name of bob is bob");
+assert(bob.name === 'bob', "name of bob is bob");
 
 bob.changeName('no-bob');
-console.log(bob.name === 'no-bob', "now name of bob is no-bob");
+assert(bob.name === 'no-bob', "now name of bob is no-bob");
 ```
 <!-- js-console -->
 
-We can write code better if you know that JavaScript is **dynamic** language. It allow us **attack** any value to an object.
+We can write code better if you know that JavaScript is **dynamic** language. It allow us to **attack** any value to an object.
 ```javascript
 function User(name) {
     this.changeName = function (newName) {
@@ -53,9 +53,9 @@ function User(name) {
 }
 
 const bob = new User('bob');
-console.log(bob.name === 'bob', "name of bob is bob");
+assert(bob.name === 'bob', "name of bob is bob");
 
 bob.changeName('no-bob');
-console.log(bob.name === 'no-bob', "now name of bob is no-bob");
+assert(bob.name === 'no-bob', "now name of bob is no-bob");
 ```
 <!-- js-console -->
