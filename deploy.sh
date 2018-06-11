@@ -1,12 +1,13 @@
+HELP="Please provide TARGET_SERVER. \`SSH_KEY_FILE_PEM=/path/to/pem-file/ TARGET_SERVER=domain sh deploy.sh\`";
 if [ ! $SSH_KEY_FILE_PEM ]
 then
-    echo "Please provide SSH_KEY_FILE_PEM";
+    echo "$HELP";
     exit 0;
 fi;
 
 if [ ! $TARGET_SERVER ]
 then
-    echo "Please provide TARGET_SERVER. \`SSH_KEY_FILE_PEM=/path/to/pem-file/ TARGET_SERVER=domain sh deploy.sh\`";
+    echo "$HELP";
     exit 0;
 fi;
 

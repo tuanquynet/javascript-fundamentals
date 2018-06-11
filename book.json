@@ -4,7 +4,7 @@
         "prism": {
             "css": ["prismjs/themes/prism-okaidia.css"]
         },
-        "addcssjs": { "js": ["scripts/assert.js"] }
+        "addcssjs": { }
     },
     "root": "./docs"
 }
