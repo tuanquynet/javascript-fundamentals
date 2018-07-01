@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Data Types](data-type/index.md)
+* [Lexical Scope](scope/lexical-scope.md)
 * [Scope](scope/index.md)
 * [Function](function/index.md)
 * [Context](function/context.md)
