@@ -1,6 +1,6 @@
 # Function
 
-There are some type of functions:
+There are some types of function:
 1. function declaration:
 ```javascript
 function loadData() {};

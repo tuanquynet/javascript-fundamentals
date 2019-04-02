@@ -18,14 +18,17 @@ ES6 add one more type of scope. It is block scope. `if` block, `for` block, `whi
 
 const config = {};
 var version = '1.0.0';
+var newVersion = '1.0.1';
 
 function changeVersion() {
   // local variable
-  var version = '1.0.1';
-  var newVersion = '1.0.1';
+  var version;
+
+  version = '1.0.1';
+  newVersion = '2.0';
 
   console.log('version: ' + version);
-  console.log('newVersion: ' + version);
+  console.log('newVersion: ' + newVersion);
 }
 changeVersion();
 console.log('-----------');
