@@ -4,6 +4,9 @@
   "description": "Collection of sample of core concepts of JavaScript",
   "main": "index.js",
   "scripts": {
+    "gitbook-init": "gitbook init",
+    "gitbook-install": "gitbook install",
+    "postinstall": "gitbook install",
     "build": "gitbook build",
     "preview": "gitbook serve --open",
     "pdf": "gitbook pdf ./ ./exports/js-fundamental.pdf",
@@ -21,6 +24,12 @@
   ],
   "author": "Quy Tran",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-addcssjs": "^1.0.2",
+    "gitbook-plugin-js-console": "git+https://github.com/tuanquynet/gitbook-plugin-js-console.git",
+    "gitbook-plugin-prism": "^2.4.0",
+    "uninstall": "0.0.0"
+  },
   "devDependencies": {}
 }
