@@ -27,6 +27,7 @@
   "dependencies": {
     "gitbook-cli": "^2.3.2",
     "gitbook-plugin-addcssjs": "^1.0.2",
+    "gitbook-plugin-disqus": "^0.1.0",
     "gitbook-plugin-js-console": "git+https://github.com/tuanquynet/gitbook-plugin-js-console.git",
     "gitbook-plugin-prism": "^2.4.0",
     "uninstall": "0.0.0"
