@@ -6,7 +6,7 @@
         },
         "addcssjs": { },
         "disqus": {
-            "shortName": "tuanquynet"
+            "shortName": "learn-js"
         }
     },
     "root": "./docs"
