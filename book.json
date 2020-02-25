@@ -1,5 +1,12 @@
 {
-    "plugins": ["prism", "-highlight", "js-console@git+https://github.com/tuanquynet/gitbook-plugin-js-console.git", "addcssjs", "disqus"],
+    "plugins": [
+        "prism",
+        "-highlight",
+        "js-console@git+https://github.com/tuanquynet/gitbook-plugin-js-console.git",
+        "addcssjs",
+        "disqus",
+        "ga"
+    ],
     "pluginsConfig": {
         "prism": {
             "css": ["prismjs/themes/prism-okaidia.css"]
@@ -7,6 +14,13 @@
         "addcssjs": { },
         "disqus": {
             "shortName": "learn-js"
+        },
+        "ga": {
+            "token": "UA-159047588-1",
+            "configuration": {
+                "cookieName": "learn_js",
+                "cookieDomain": "learn-js.tuanquynet.click"
+            }
         }
     },
     "root": "./docs"
